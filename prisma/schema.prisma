@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["relationJoins"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Subscriber {
+    subId Int @db.UnsignedInt @id @default(autoincrement()) @map("sub_id")
+    url String @unique
+    secret String
+    
+    createdAt DateTime @default(now()) @map("created_at")
+
+    @@map("subscriber")
+}
+
+model SubscribeData{
+    txId   Int @db.UnsignedInt @id @default(autoincrement()) @map("tx_id")
+    message String
+
+    createdAt DateTime @default(now()) @map("created_at")
+
+    @@map("subscribe_data")
+}
