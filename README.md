@@ -1,6 +1,6 @@
 # Fastify Pub&Sub Webhook
 Webhook Project for Publisher list of message in database to Subscriber in database.
-[subscriber side](webhook_subscriber/README.md)
+[subscriber side](webhook_subscriber)
 
 # Tech  stack
  - Fastify

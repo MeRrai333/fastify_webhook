@@ -12,9 +12,9 @@ Webhook Project for Subscsribe Webhook. Receive message verify and decode by JWT
  1. install module
  `npm install`
 
- 2. In `src/server.ts` at line 14 `const endpoints: EndpointConfig[]` is list of endpoints that can manual add path and secret for each endpoint from [webhook_pub_sub](README.md)
+ 2. In `src/server.ts` at line 14 `const endpoints: EndpointConfig[]` is list of endpoints that can manual add path and secret for each endpoint from [webhook_pub_sub](/)
  example:
-  - From [webhook_pub_sub](README.md) `POST` in `/api/subscribe` send body
+  - From [webhook_pub_sub](/) `POST` in `/api/subscribe` send body
   ```
   {
     "url": "http://localhost:4000/test"
@@ -39,7 +39,7 @@ Webhook Project for Subscsribe Webhook. Receive message verify and decode by JWT
   3. Start server
   `npm run dev`
 
-  4. Send `POST` to `/api/ask` in [webhook_pub_sub](README.md)
+  4. Send `POST` to `/api/ask` in [webhook_pub_sub](/)
   example:
   - If message in DB is
   ```
@@ -48,7 +48,7 @@ Webhook Project for Subscsribe Webhook. Receive message verify and decode by JWT
       message: "Hello"
   }
   ```
-  - Then send `POST` to `/api/ask` in [webhook_pub_sub](README.md) with `tx_id: 1`
+  - Then send `POST` to `/api/ask` in [webhook_pub_sub](/) with `tx_id: 1`
   - In console will response:
   ```
   ----- Path /mm -----
@@ -57,4 +57,4 @@ Webhook Project for Subscsribe Webhook. Receive message verify and decode by JWT
   Messsage from jwt decode: 'Hello'
   Timestamp: 2025-06-14T19:00:07.977Z
   ```
-  5. Change message, Subscsribe or unsubscribe in [webhook_pub_sub](README.md) then test again
+  5. Change message, Subscsribe or unsubscribe in [webhook_pub_sub](/) then test again
