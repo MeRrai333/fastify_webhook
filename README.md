@@ -68,6 +68,7 @@ REDIS_URL="redis://:your_password@your_host:your_port/0"
   6. List of message by `GET` in `/api/provide_data`
 
   # API documentation
+  [Postman Collection](/postman_collection/Sender_collection.json)
   - `POST`: `/api/subscribe` to add subscriber
   JSON Body:
   ```
