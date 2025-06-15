@@ -169,7 +169,15 @@ REDIS_URL="redis://:your_password@your_host:your_port/0"
   {
     "status": "ok",
     "data": {
-        "message": "message from tx_id"
+        "message": "message from tx_id",
+        "result": {
+            "success": [
+                "http://localhost:4000/1",
+                "http://localhost:4000/2",
+                "http://localhost:4000/3"
+            ],
+            "failed": []
+        }
     }
   }
   ```

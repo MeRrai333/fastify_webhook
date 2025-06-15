@@ -46,47 +46,59 @@ async function askRoutes(
           isMatch = true
         }
         const subscribers = await db.subscriber.findMany()
+        const axiosResult: {
+          success: string[];
+          failed: string[];
+        } = {
+          success: [],
+          failed: []
+        }
 
-        subscribers.map(async (sub) => {
-          try{
-            const payload = jwt.sign(
-              {
-                message: message,
-                timestamp: new Date().toISOString(),
-                isMatch
-              },
-              sub.secret
-            )
-  
-            await axios.post(sub.url,
-              {
-                payload
-              },
-              {
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              timeout: 10000
-            });
-  
-            fastify.log.info({
-              url: sub.url,
-              payload: payload
-            }, 'Axios successful')
-          }
-          catch(error: any){
-            fastify.log.error({
-              url: sub.url,
-              error: error.message,
-              status: error.response?.status
-            }, 'Axios failed')
-          }
-        })
+          await Promise.allSettled(
+          subscribers.map(async (sub) => {
+            try{
+              const payload = jwt.sign(
+                {
+                  message: message,
+                  timestamp: new Date().toISOString(),
+                  isMatch
+                },
+                sub.secret
+              )
+    
+              await axios.post(sub.url,
+                {
+                  payload
+                },
+                {
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                timeout: 10000
+              });
+
+              axiosResult.success.push(sub.url)
+              fastify.log.info({
+                url: sub.url,
+                payload: payload
+              }, 'Axios successful')
+            }
+            catch(error: any){
+              axiosResult.failed.push(sub.url)
+              fastify.log.error({
+                url: sub.url,
+                error: error.message,
+                status: error.response?.status
+              }, 'Axios failed')
+            }
+          })
+        )
           
         return reply.code(200).send({
           status: 'ok',
           data: {
-            message: message
+            message: message,
+            result: axiosResult
           }
         });
       } catch (error) {

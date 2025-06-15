@@ -12,7 +12,7 @@ Webhook Project for Subscsribe Webhook. Receive message verify and decode by JWT
  1. install module
  `npm install`
 
- 2. In `src/server.ts` at line 14 `const endpoints: EndpointConfig[]` is list of endpoints that can manual add path and secret for each endpoint from [webhook_pub_sub](/)
+ 2. In `src/config.ts` at line 7 `const endpoints: EndpointConfig[]` is list of endpoints that can manual add path and secret for each endpoint from [webhook_pub_sub](/)
  example:
   - From [webhook_pub_sub](/) `POST` in `/api/subscribe` send body
   ```
